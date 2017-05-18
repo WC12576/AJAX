@@ -31,28 +31,30 @@
     <button id="load">加载</button>   
 </body>
 <script>
-    page = 1
-    load.onclick = function(){
+    var page = 1
+    load.onclick = function () {
         var request = new XMLHttpRequest()
-        request.open('GET' , `https://wc12576.github.io/AJAX/page`+page+`.josn`)
-        request.onload = function(){
-            page = page + 1
+        request.open('GET', 'https://wc12576.github.io/AJAX/page' +page + '.json')
+        request.onload = function () {
+            page += 1
             let object = JSON.parse(request.responseText)
             let hasNextPage = object.hasNextPage
             if(!hasNextPage){
-                load.disable = true
-                laod.innerText = "到底了"
+               load.disabled = true
+               laod.innerText = "到底了"
             }
             let array = object.items
-            array.forEach(function(items,index){
+            array.forEach(function (item, index) {
                 let li = document.createElement('li')
-                let img = document.createElement('img')
-                li.appendChild(img)
+                let img = new Image()
                 container.appendChild(li)
+                li.appendChild(img)
                 img.src = item.url
             })
         }
+
         request.send()
+
     }
 </script>
 </html>
