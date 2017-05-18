@@ -36,7 +36,7 @@
         var request = new XMLHttpRequest()
         request.open('GET' , `https://wc12576.github.io/AJAX/page`+page+`.josn`)
         request.onload = function(){
-            page += 1
+            page = page + 1
             let object = JSON.parse(request.responseText)
             let hasNextPage = object.hasNextPage
             if(!hasNextPage){
