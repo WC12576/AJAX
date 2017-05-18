@@ -34,7 +34,7 @@
     page = 1
     load.onclick = function(){
         var requset = new XMLHttpRequset()
-        requset.open('GET' , `/page`+page+`.josn`)
+        requset.open('GET' , `https://wc12576.github.io/AJAX/page`+page+`.josn`)
         requset.onload = function(){
             page = page + 1
             let object = JSON.parse(request.responseText)
