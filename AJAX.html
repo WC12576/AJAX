@@ -33,9 +33,9 @@
 <script>
     page = 1
     load.onclick = function(){
-        var requset = new XMLHttpRequset()
-        requset.open('GET' , `https://wc12576.github.io/AJAX/page`+page+`.josn`)
-        requset.onload = function(){
+        var request = new XMLHttpRequest()
+        request.open('GET' , `/page`+page+`.josn`)
+        request.onload = function(){
             page = page + 1
             let object = JSON.parse(request.responseText)
             let hasNextPage = object.hasNextPage
@@ -49,10 +49,11 @@
                 let img = document.createElement('img')
                 li.appendChild(img)
                 container.appendChild(li)
-                img,src = item.url
+                img.src = item.url
             })
         }
-        requset.send()
+        request.send()
+    }
     }
 </script>
 </html>
