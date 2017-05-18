@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX-demo</title>
+    <style>
+    button{
+            margin:0 auto;
+            width:90px;
+            height:30px;
+            border-radius:5px;
+            border:none;
+            background:#ddd;
+            position:relative;
+            transform:translate(-50%,-50%);
+            left:50vw;
+            margin-top:30px;
+        }
+        #container > li{
+            display:flex;
+            justify-content:center;
+            max-width:800px;
+            max-height:1000px;
+        }
+    </style>
+</head>
+<body>
+    <ol id="container"></ol>
+    <button id="load">加载</button>   
+</body>
+<script>
+    page = 1
+    load.onclick = function(){
+        var requset = new XMLHttpRequset()
+        requset.open('GET' , `/page`+page+`.josn`)
+        requset.onload = function(){
+            page = page + 1
+            let object = JSON.parse(request.responseText)
+            let hasNextPage = object.hasNextPage
+            if(!hasNextPage){
+                load.disable = true
+                laod.innerText = "到底了"
+            }
+            let array = object.items
+            array.forEach(function(items,index){
+                let li = document.createElement('li')
+                let img = document.createElement('img')
+                li.appendChild(img)
+                container.appendChild(li)
+                img,src = item.url
+            })
+        }
+        requset.send()
+    }
+</script>
+</html>
