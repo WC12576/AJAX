@@ -44,40 +44,26 @@
 </body>
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
+    load.onclick = function () {
     $.get('https://wc12576.github.io/AJAX/page1.json').then(function(data){
         console.log(data.items)
-    })
-</script>
-<script>
-    var page = 1
-    load.onclick = function () {
-        var request = new XMLHttpRequest()
-        request.open('GET', 'https://wc12576.github.io/AJAX/page' +page + '.json')
-        request.onload = function () {
-            page += 1
-            let object = JSON.parse(request.responseText)
-            let hasNextPage = object.hasNextPage
-            if(!hasNextPage){
-               load.disabled = true
-               load.innerText = '到底了'
-            }
-            let array = object.items
-            console.log(array)
+         let array = data.items
             array.forEach(function (item, index) {
-                console.log(item.span)
+                console.log(item)
                 let li = document.createElement('li')
                 let span = document.createElement('span')
                 let img = new Image()
                 container.appendChild(li)
                 li.appendChild(img)
-                li.appendChild(span)
                 img.src = item.url
                 span.innerHTML = item.span
+                li.appendChild(span)
             })
-        }
 
-        request.send()
-
+    })
     }
+</script>
+<script>
+   
 </script>
 </html>
