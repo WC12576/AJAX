@@ -58,10 +58,13 @@
             let array = object.items
             array.forEach(function (item, index) {
                 let li = document.createElement('li')
+                let span = document.createElement('span')
                 let img = new Image()
                 container.appendChild(li)
                 li.appendChild(img)
                 img.src = item.url
+                span.innerHTML = item.span
+                li.appendChild(span)
             })
         }
 
