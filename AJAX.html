@@ -42,6 +42,12 @@
     <ol id="container"></ol>
     <button id="load">加载</button>   
 </body>
+<script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $.post('./page1.json').then(function(data){
+        console.log(data)
+    })
+</script>
 <script>
     var page = 1
     load.onclick = function () {
