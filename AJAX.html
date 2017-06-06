@@ -44,9 +44,16 @@
 </body>
 <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
+    var page = 1
     load.onclick = function () {
-    $.get('https://wc12576.github.io/AJAX/page1.json').then(function(data){
+    $.get('https://wc12576.github.io/AJAX/page'+ page + '.json').then(function(data){
         console.log(data.hasNextPage)
+        page += 1
+            let hasNextPage = data.hasNextPage
+            if (!hasNextPage) {
+                load.disabled = true
+                load.innerText = '到底了'
+            }
          let array = data.items
             array.forEach(function (item, index) {
                 console.log(item)
