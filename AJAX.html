@@ -71,6 +71,32 @@
     }
 </script>
 <script>
-   
+    var page = 1
+    load.onclick = function () {
+        var request = new XMLHttpRequest()
+        request.open('GET', 'https://wc12576.github.io/AJAX/page'+ page + '.json')
+        request.onload = function () {
+            page += 1
+            let object = JSON.parse(request.responseText)
+            let hasNextPage = object.hasNextPage
+            if (!hasNextPage) {
+                load.disabled = true
+                load.innerText = '到底了'
+            }
+            let array = object.items
+            array.forEach(function (item, index) {
+                console.log(item)
+                let li = document.createElement('li')
+                let span = document.createElement('span')
+                let img = new Image()
+                container.appendChild(li)
+                li.appendChild(img)
+                img.src = item.url
+                span.innerHTML = item.span
+                li.appendChild(span)
+            })
+        }
+        request.send()
+    }
 </script>
 </html>
